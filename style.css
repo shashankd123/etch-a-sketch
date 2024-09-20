@@ -1,0 +1,33 @@
+/* *{
+    border: red solid 1px;
+} */
+
+.heading{
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-and-canvas{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
+
+.buttons button{
+    width: 10em;
+    margin: 25px;
+}
+
+#canvas{
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border: black solid 3px;
+}

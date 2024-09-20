@@ -1,36 +1,59 @@
-const body = document.querySelector("body");
-
-const container = document.createElement("div");
-container.id = "container"
-container.style.display = "flex";
-container.style.flexDirection = "column";
-
-body.appendChild(container);
-
-const rows = document.createElement("div");
-rows.id = "rows";
-rows.style.display = "flex";
+const canvas = document.querySelector("#canvas");
 
 const square = document.createElement("div");
 square.id = "square";
-square.style.height = "20px";
-square.style.width = "20px";
+square.style.width = "100px";
 square.style.background = "lightblue";
 
-function rowsAndColmn(num, cont, child){
-    for(let i=0; i<num; i++){
-        cont.appendChild(child.cloneNode(true))
+const row = document.createElement("div");
+row.style.display = "flex";
+row.id = "row";
+row.style.height = "100px"
+
+function addRowClmn(num, parent, child){
+    for (let i=0; i<num; i++){
+        parent.appendChild(child.cloneNode(true));
     }
-    return cont
+    return parent
 }
 
-newRows = rowsAndColmn(50, rows, square);
 
-rowsAndColmn(50, container, newRows);
+const inputNumber = document.querySelector("#input");
+const enterNumber = document.querySelector("#enter-number");
+const reset = document.querySelector("#reset");
 
-container.addEventListener("mouseover", (e) => {
-    let target = e.target;
-    if (target.id == "square"){
-        target.style.background = "red";
-    }
+reset.addEventListener("click", () =>{
+    resetCanvas();
+    let rstRw = addRowClmn(16, row, square);
+    addRowClmn(16, canvas, rstRw);
+});
+
+function resetCanvas(){
+    row.innerHTML = "";
+    canvas.innerHTML = "";
+}
+
+enterNumber.addEventListener("click", () =>{
+
+    resetCanvas();
+
+    let inpt = inputNumber.value;
+    let entRw = addRowClmn(inpt, row, square);
+    addRowClmn(inpt, canvas, entRw);
+
 })
+
+
+window.addEventListener("load", () =>{
+    let loadRw = addRowClmn(16, row, square);
+    addRowClmn(16, canvas, loadRw);
+})
+
+// let rows = addRowClmn(16, row, square)
+// addRowClmn(16, canvas, rows)
+
+canvas.addEventListener("mouseover", (e) => {
+    const target = e.target;
+    target.style.background = "red";
+})
+
